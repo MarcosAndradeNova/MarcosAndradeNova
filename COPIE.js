@@ -1,1 +1,96 @@
+//Verificar si es Primo 
+    public static boolean esPrimo(int numero) {
+        if (numero <= 1) {
+            return false;
+        }
+        return esPrimoRecursivo(numero, 2);
+    }
 
+    private static boolean esPrimoRecursivo(int n, int divisor) {
+        //Caso Base
+        //n = 2 | divisor = 2
+        if (n % divisor == 0) {
+            if (n == divisor) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //Caso general
+        return esPrimoRecursivo(n, divisor + 1);
+    }
+    
+    //Sumar Primos
+    public static int sumaPrimo(int numero){
+        return sumaPrimoR(numero);
+    }
+    
+    private static int sumaPrimoR(int num){
+        //Caso Base
+        if(num < 10){
+            if(esPrimo(num)){
+               return num;
+            }else{
+                return 0;
+            } 
+        }else{ //Caso general
+            int res = num % 10;
+            num = num /10;
+            int resultado = sumaPrimoR(num); //5
+            if(esPrimo(res)){
+                return resultado + res;
+            }else{
+                return resultado;
+            }
+        }
+        
+    }
+    
+    public static int multiplicar(int numero){
+        return multilpicarR(numero);
+    }
+    
+    private static int multilpicarR(int num){
+        //Caso base
+        if(num<10){
+            if(esPrimo(num)){
+                return num;
+            }else{
+                return 0;
+            }
+        }else{ //Caso Base
+            int res = num % 10; //res = 7
+            num = num /10;
+            int resultado = multilpicarR(num); //328 => 6
+            if(esPrimo(res)){
+               return resultado * res; 
+            }else{
+                return resultado;
+            }
+        }
+    }
+    
+    
+    public static int contarDigitPrimos(int numero){
+        return contarDigitoPrimosR(numero);
+    }
+    
+    private static int contarDigitoPrimosR(int num){
+        //Caso Base
+        if(num<10){
+            if(esPrimo(num)){
+                return 1;
+            }else{
+                return 0;
+            }
+        }else{
+            int res = num %10;
+            num = num /10;
+            int resultado = contarDigitoPrimosR(num); //3
+            if(esPrimo(res)){
+                return resultado + 1;
+            }else{
+                return resultado;
+            }
+        }
+    }
